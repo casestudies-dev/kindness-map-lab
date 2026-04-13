@@ -10,7 +10,7 @@ const features = [
 ];
 
 const Index = () => (
-  <div className="h-screen w-screen overflow-hidden relative">
+  <div className="min-h-screen w-screen relative">
     <Navbar />
 
     {/* Background gradient orbs */}
