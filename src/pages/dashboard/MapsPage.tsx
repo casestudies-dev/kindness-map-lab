@@ -71,8 +71,8 @@ const MapsPage = () => {
           key={opt.id}
           className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
           onClick={() => {
-            opt.action();
             setShowNewMap(false);
+            if ("href" in opt && opt.href) navigate(opt.href);
           }}
         >
           <CardContent className="p-4 text-center space-y-2">
