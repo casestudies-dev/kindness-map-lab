@@ -2,8 +2,8 @@ import { Globe } from "lucide-react";
 import { Button } from "./ui/button";
 
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 glass">
-    <div className="container flex items-center justify-between h-16 px-6">
+  <nav className="fixed inset-x-0 top-0 z-50 glass border-b border-border/60">
+    <div className="container flex items-center justify-between h-20 px-6">
       <div className="flex items-center gap-2.5">
         <Globe className="w-6 h-6 text-primary" />
         <span className="font-heading text-lg font-bold tracking-tight text-foreground">ImpactMap</span>
