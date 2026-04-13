@@ -1,7 +1,11 @@
-import { Map, Database, BarChart3, Settings, User } from "lucide-react";
+import { Map, Database, BarChart3, Settings, User, LogOut } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useProfile } from "@/hooks/useProfile";
+import { useMaps } from "@/hooks/useMaps";
 import {
   Sidebar,
   SidebarContent,
@@ -26,6 +30,13 @@ export function DashboardSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const { signOut } = useAuth();
+  const { data: profile } = useProfile();
+  const { data: maps } = useMaps();
+
+  const initials = profile?.name
+    ? profile.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : "U";
 
   return (
     <Sidebar collapsible="icon">
@@ -61,14 +72,28 @@ export function DashboardSidebar() {
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
             <AvatarFallback className="bg-sidebar-accent text-sidebar-accent-foreground text-xs">
-              <User className="h-4 w-4" />
+              {initials}
             </AvatarFallback>
           </Avatar>
           {!collapsed && (
-            <div className="flex flex-col min-w-0">
-              <span className="text-sm font-medium text-sidebar-foreground truncate">User</span>
-              <span className="text-xs text-muted-foreground truncate">user@example.com</span>
+            <div className="flex flex-col min-w-0 flex-1">
+              <span className="text-sm font-medium text-sidebar-foreground truncate">
+                {profile?.name || "User"}
+              </span>
+              <span className="text-xs text-muted-foreground truncate">
+                {profile?.email || ""}
+              </span>
+              {maps && (
+                <span className="text-xs text-muted-foreground">
+                  {maps.length} map{maps.length !== 1 ? "s" : ""}
+                </span>
+              )}
             </div>
+          )}
+          {!collapsed && (
+            <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={signOut} title="Sign out">
+              <LogOut className="h-4 w-4" />
+            </Button>
           )}
         </div>
       </SidebarFooter>
