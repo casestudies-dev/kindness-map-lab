@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 
 const Navbar = () => (
-  <nav className="fixed inset-x-0 top-0 z-50 bg-background border-b border-border/60">
+  <nav className="fixed inset-x-0 top-0 z-50 bg-background">
     <div className="container flex items-center justify-between h-20 px-6">
       <div className="flex items-center">
         <span className="font-heading text-lg font-bold tracking-tight text-foreground">mappio.org</span>
