@@ -25,7 +25,7 @@ const Index = () => (
         <span className="text-gradient">beautifully mapped</span>
       </h1>
 
-      <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
+      <p className="text-base md:text-lg text-foreground leading-relaxed mb-8 max-w-xl">
         Display stunning maps that showcase your organisation's positive initiatives worldwide.
       </p>
 
