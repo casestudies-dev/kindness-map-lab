@@ -41,23 +41,17 @@ const Index = () => (
         </Button>
       </div>
 
-      {/* Globe visual */}
-      <div className="relative animate-float">
-        <img
-          src={globeHero}
-          alt="Interactive globe showing global impact network"
-          width={1024}
-          height={1024}
-          className="w-[280px] md:w-[340px] lg:w-[400px] h-auto drop-shadow-2xl"
+      {/* Map embed */}
+      <div className="w-full max-w-4xl">
+        <iframe
+          src="https://org-maps.onrender.com"
+          width="100%"
+          height="600"
+          style={{ border: 'none', borderRadius: '12px' }}
+          allow="accelerometer; autoplay"
+          loading="lazy"
+          title="Glastonbury Festival — Worthy Causes"
         />
-        <div className="absolute top-4 -left-16 glass rounded-xl px-3 py-2 animate-pulse-glow">
-          <div className="text-xs text-muted-foreground">Projects Active</div>
-          <div className="font-heading text-lg font-bold text-primary">2,847</div>
-        </div>
-        <div className="absolute bottom-8 -right-12 glass rounded-xl px-3 py-2" style={{ animationDelay: '1.5s' }}>
-          <div className="text-xs text-muted-foreground">Countries Reached</div>
-          <div className="font-heading text-lg font-bold text-foreground">94</div>
-        </div>
       </div>
     </div>
   </div>
