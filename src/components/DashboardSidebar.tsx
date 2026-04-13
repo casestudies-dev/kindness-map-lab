@@ -6,6 +6,7 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -26,6 +27,11 @@ export function DashboardSidebar() {
 
   return (
     <Sidebar collapsible="icon">
+      <SidebarHeader className="p-4">
+        {!collapsed && (
+          <span className="font-heading text-lg font-bold tracking-tight text-sidebar-foreground">mappio.org</span>
+        )}
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
