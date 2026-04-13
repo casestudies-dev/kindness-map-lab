@@ -64,16 +64,20 @@ const MapsPage = () => {
     setDeleteId(null);
   };
 
-  const CreationOptions = () => (
+  const handleOptionClick = (opt: typeof CREATION_OPTIONS[number]) => {
+    setShowNewMap(false);
+    if ("href" in opt && opt.href) {
+      navigate(opt.href);
+    }
+  };
+
+  const renderCreationOptions = () => (
     <div className="grid gap-4 md:grid-cols-3">
       {CREATION_OPTIONS.map((opt) => (
         <Card
           key={opt.id}
           className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
-          onClick={() => {
-            setShowNewMap(false);
-            if ("href" in opt && opt.href) navigate(opt.href);
-          }}
+          onClick={() => handleOptionClick(opt)}
         >
           <CardContent className="p-4 text-center space-y-2">
             <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
@@ -112,7 +116,7 @@ const MapsPage = () => {
             <p className="text-lg font-medium text-foreground">No maps yet</p>
             <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to create your first map.</p>
           </div>
-          <CreationOptions />
+          {renderCreationOptions()}
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -174,7 +178,7 @@ const MapsPage = () => {
             <DialogTitle>Create a new map</DialogTitle>
             <DialogDescription>Choose how you'd like to get started.</DialogDescription>
           </DialogHeader>
-          <CreationOptions />
+          {renderCreationOptions()}
         </DialogContent>
       </Dialog>
 
