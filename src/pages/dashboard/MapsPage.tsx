@@ -116,7 +116,7 @@ const MapsPage = () => {
             <p className="text-lg font-medium text-foreground">No maps yet</p>
             <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to create your first map.</p>
           </div>
-          <CreationOptions />
+          {renderCreationOptions()}
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -178,7 +178,7 @@ const MapsPage = () => {
             <DialogTitle>Create a new map</DialogTitle>
             <DialogDescription>Choose how you'd like to get started.</DialogDescription>
           </DialogHeader>
-          <CreationOptions />
+          {renderCreationOptions()}
         </DialogContent>
       </Dialog>
 
