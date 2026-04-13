@@ -45,7 +45,7 @@ const Index = () => (
           src="https://glastonbury.mappio.org"
           width="100%"
           height="600"
-          style={{ border: 'none' }}
+          style={{ border: 'none', borderRadius: '16px', overflow: 'hidden' }}
           loading="lazy"
           title="Glastonbury Festival — Worthy Causes"
         />
