@@ -4,9 +4,33 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Code, RefreshCw, Trash2, MapPin, Eye } from "lucide-react";
+import { ExternalLink, Code, RefreshCw, Trash2, MapPin, Eye, Plus, CreditCard, FileSpreadsheet, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const CREATION_OPTIONS = [
+  {
+    id: "stripe",
+    icon: CreditCard,
+    title: "Connect via Stripe",
+    description: "Link your Stripe account to automatically create a map from your customer data.",
+    action: () => window.open("https://api.mappio.org/connect", "_blank"),
+  },
+  {
+    id: "manual",
+    icon: FileSpreadsheet,
+    title: "Build manually / CSV",
+    description: "Upload a CSV or manually add locations to build your map from scratch.",
+    action: () => {},
+  },
+  {
+    id: "website",
+    icon: Globe,
+    title: "Import from website",
+    description: "We'll scan your website to automatically detect and map your locations.",
+    action: () => {},
+  },
+];
 
 const MapsPage = () => {
   const { data: maps, isLoading } = useMaps();
@@ -14,6 +38,7 @@ const MapsPage = () => {
   const { toast } = useToast();
   const [embedSlug, setEmbedSlug] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [showNewMap, setShowNewMap] = useState(false);
 
   const getLocationsCount = (config: Record<string, unknown>) => {
     const locations = config?.locations;
@@ -39,10 +64,40 @@ const MapsPage = () => {
     setDeleteId(null);
   };
 
+  const CreationOptions = () => (
+    <div className="grid gap-4 md:grid-cols-3">
+      {CREATION_OPTIONS.map((opt) => (
+        <Card
+          key={opt.id}
+          className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
+          onClick={() => {
+            opt.action();
+            setShowNewMap(false);
+          }}
+        >
+          <CardContent className="p-6 text-center space-y-3">
+            <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <opt.icon className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="font-semibold text-foreground">{opt.title}</h3>
+            <p className="text-sm text-muted-foreground">{opt.description}</p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-foreground font-heading">Maps</h1>
-      <p className="text-muted-foreground mt-1 mb-6">Manage your globes and maps.</p>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-semibold text-foreground font-heading">Maps</h1>
+          <p className="text-muted-foreground mt-1">Manage your globes and maps.</p>
+        </div>
+        <Button onClick={() => setShowNewMap(true)}>
+          <Plus className="h-4 w-4 mr-1" /> New map
+        </Button>
+      </div>
 
       {isLoading ? (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -51,13 +106,14 @@ const MapsPage = () => {
           ))}
         </div>
       ) : !maps?.length ? (
-        <Card>
-          <CardContent className="p-12 text-center text-muted-foreground">
-            <MapPin className="h-12 w-12 mx-auto mb-4 opacity-40" />
-            <p className="text-lg font-medium">No maps yet</p>
-            <p className="text-sm mt-1">Connect a Stripe account to create your first map.</p>
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+          <div className="text-center mb-8">
+            <MapPin className="h-12 w-12 mx-auto mb-4 opacity-40 text-muted-foreground" />
+            <p className="text-lg font-medium text-foreground">No maps yet</p>
+            <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to create your first map.</p>
+          </div>
+          <CreationOptions />
+        </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {maps.map((map) => (
@@ -110,6 +166,17 @@ const MapsPage = () => {
           ))}
         </div>
       )}
+
+      {/* New map modal */}
+      <Dialog open={showNewMap} onOpenChange={setShowNewMap}>
+        <DialogContent className="sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Create a new map</DialogTitle>
+            <DialogDescription>Choose how you'd like to get started.</DialogDescription>
+          </DialogHeader>
+          <CreationOptions />
+        </DialogContent>
+      </Dialog>
 
       {/* Embed modal */}
       <Dialog open={!!embedSlug} onOpenChange={() => setEmbedSlug(null)}>
