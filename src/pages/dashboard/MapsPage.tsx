@@ -71,25 +71,6 @@ const MapsPage = () => {
     }
   };
 
-  const renderCreationOptions = () => (
-    <div className="grid gap-4 md:grid-cols-3">
-      {CREATION_OPTIONS.map((opt) => (
-        <Card
-          key={opt.id}
-          className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
-          onClick={() => handleOptionClick(opt)}
-        >
-          <CardContent className="p-4 text-center space-y-2">
-            <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
-              <opt.icon className="h-4 w-4 text-primary" />
-            </div>
-            <h3 className="text-sm font-semibold text-foreground">{opt.title}</h3>
-            <p className="text-sm text-muted-foreground">{opt.description}</p>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
 
   return (
     <div>
@@ -116,7 +97,23 @@ const MapsPage = () => {
             <p className="text-lg font-medium text-foreground">No maps yet</p>
             <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to create your first map.</p>
           </div>
-          {renderCreationOptions()}
+          <div className="grid gap-4 md:grid-cols-3">
+            {CREATION_OPTIONS.map((opt) => (
+              <Card
+                key={opt.id}
+                className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
+                onClick={() => handleOptionClick(opt)}
+              >
+                <CardContent className="p-4 text-center space-y-2">
+                  <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+                    <opt.icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-foreground">{opt.title}</h3>
+                  <p className="text-sm text-muted-foreground">{opt.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -178,7 +175,23 @@ const MapsPage = () => {
             <DialogTitle>Create a new map</DialogTitle>
             <DialogDescription>Choose how you'd like to get started.</DialogDescription>
           </DialogHeader>
-          {renderCreationOptions()}
+          <div className="grid gap-4 md:grid-cols-3">
+            {CREATION_OPTIONS.map((opt) => (
+              <Card
+                key={opt.id}
+                className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
+                onClick={() => handleOptionClick(opt)}
+              >
+                <CardContent className="p-4 text-center space-y-2">
+                  <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+                    <opt.icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-foreground">{opt.title}</h3>
+                  <p className="text-sm text-muted-foreground">{opt.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </DialogContent>
       </Dialog>
 
