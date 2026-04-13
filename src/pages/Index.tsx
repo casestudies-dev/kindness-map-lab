@@ -17,7 +17,8 @@ const Index = () => (
     <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
     <div className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
 
-    <div className="h-full pt-16 flex flex-col items-center justify-center text-center px-6">
+    <main className="pt-28 md:pt-32 px-6 pb-12">
+      <div className="flex flex-col items-center text-center min-h-[calc(100vh-4rem)]">
       <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 w-fit mb-6">
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
         <span className="text-xs text-muted-foreground font-medium">Show the world your impact</span>
@@ -32,7 +33,7 @@ const Index = () => (
         Display stunning maps that showcase your organisation's positive initiatives worldwide.
       </p>
 
-      <div className="flex items-center gap-4 mb-10">
+      <div className="flex items-center gap-4 mb-10 flex-wrap justify-center">
         <Button variant="hero" size="lg" className="gap-2">
           Start for free <ArrowRight className="w-4 h-4" />
         </Button>
@@ -53,7 +54,8 @@ const Index = () => (
           title="Glastonbury Festival — Worthy Causes"
         />
       </div>
-    </div>
+      </div>
+    </main>
   </div>
 );
 
