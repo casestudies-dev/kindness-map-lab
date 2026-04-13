@@ -36,7 +36,10 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
+      <Link to="/" className="mb-8 text-2xl font-heading font-bold tracking-tight text-foreground hover:opacity-80 transition-opacity">
+        mappio.org
+      </Link>
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-heading">Create your account</CardTitle>
