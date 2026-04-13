@@ -6,47 +6,47 @@
 
 @layer base {
   :root {
-    --background: 220 25% 7%;
-    --foreground: 160 20% 95%;
+    --background: 0 0% 100%;
+    --foreground: 220 25% 10%;
 
-    --card: 220 20% 12%;
-    --card-foreground: 160 20% 95%;
+    --card: 210 20% 96%;
+    --card-foreground: 220 25% 10%;
 
-    --popover: 220 20% 12%;
-    --popover-foreground: 160 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
 
-    --primary: 160 60% 45%;
-    --primary-foreground: 220 25% 7%;
+    --primary: 160 60% 38%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 40% 20%;
-    --secondary-foreground: 160 20% 90%;
+    --secondary: 160 20% 92%;
+    --secondary-foreground: 220 20% 20%;
 
-    --muted: 220 15% 15%;
-    --muted-foreground: 210 10% 55%;
+    --muted: 210 15% 94%;
+    --muted-foreground: 215 10% 45%;
 
     --accent: 160 50% 35%;
-    --accent-foreground: 160 20% 95%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 160 60% 45%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 160 60% 38%;
 
     --radius: 0.75rem;
 
-    --glow-primary: 160 60% 45%;
+    --glow-primary: 160 60% 38%;
     --glow-accent: 180 50% 40%;
 
-    --sidebar-background: 220 20% 10%;
-    --sidebar-foreground: 160 20% 90%;
-    --sidebar-primary: 160 60% 45%;
-    --sidebar-primary-foreground: 220 25% 7%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 160 20% 90%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 160 60% 45%;
+    --sidebar-background: 210 20% 96%;
+    --sidebar-foreground: 220 25% 10%;
+    --sidebar-primary: 160 60% 38%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 15% 92%;
+    --sidebar-accent-foreground: 220 25% 10%;
+    --sidebar-border: 220 13% 88%;
+    --sidebar-ring: 160 60% 38%;
 
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
