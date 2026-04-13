@@ -64,16 +64,20 @@ const MapsPage = () => {
     setDeleteId(null);
   };
 
-  const CreationOptions = () => (
+  const handleOptionClick = (opt: typeof CREATION_OPTIONS[number]) => {
+    setShowNewMap(false);
+    if ("href" in opt && opt.href) {
+      navigate(opt.href);
+    }
+  };
+
+  const renderCreationOptions = () => (
     <div className="grid gap-4 md:grid-cols-3">
       {CREATION_OPTIONS.map((opt) => (
         <Card
           key={opt.id}
           className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
-          onClick={() => {
-            setShowNewMap(false);
-            if ("href" in opt && opt.href) navigate(opt.href);
-          }}
+          onClick={() => handleOptionClick(opt)}
         >
           <CardContent className="p-4 text-center space-y-2">
             <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
