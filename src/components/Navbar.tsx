@@ -6,7 +6,7 @@ const Navbar = () => (
       <div className="flex items-center">
         <span className="font-heading text-lg font-bold tracking-tight text-foreground">mappio.org</span>
       </div>
-      <div className="hidden md:flex items-center gap-8 text-sm text-foreground">
+      <div className="hidden md:flex items-center gap-8 text-sm font-medium text-foreground">
         <a href="#" className="hover:text-foreground transition-colors">Features</a>
         <a href="#" className="hover:text-foreground transition-colors">Pricing</a>
         <a href="#" className="hover:text-foreground transition-colors">Examples</a>
