@@ -22,14 +22,12 @@ const CREATION_OPTIONS = [
     icon: FileSpreadsheet,
     title: "Build manually / CSV",
     description: "Upload a CSV or manually add locations to build your map from scratch.",
-    action: () => {},
   },
   {
     id: "website",
     icon: Globe,
     title: "Import from website",
     description: "We'll scan your website to automatically detect and map your locations.",
-    action: () => {},
   },
 ];
 
