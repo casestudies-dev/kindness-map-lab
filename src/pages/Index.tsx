@@ -20,7 +20,7 @@ const Index = () => (
     <main className="pt-36 md:pt-40 px-6 pb-16">
       <div className="flex flex-col items-center text-center min-h-[calc(100vh-5rem)]">
 
-      <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-5 max-w-3xl">
+      <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight mb-5 max-w-3xl">
         Your global impact,{" "}
         <span className="text-gradient">beautifully mapped</span>
       </h1>
