@@ -34,6 +34,7 @@ const CREATION_OPTIONS = [
 ];
 
 const MapsPage = () => {
+  const navigate = useNavigate();
   const { data: maps, isLoading } = useMaps();
   const deleteMap = useDeleteMap();
   const { toast } = useToast();
