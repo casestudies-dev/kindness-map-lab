@@ -1,6 +1,6 @@
 import { Map, Database, BarChart3, Settings, User, LogOut } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
@@ -30,9 +30,15 @@ export function DashboardSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const navigate = useNavigate();
   const { signOut } = useAuth();
   const { data: profile } = useProfile();
   const { data: maps } = useMaps();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/login");
+  };
 
   const initials = profile?.name
     ? profile.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
@@ -91,7 +97,7 @@ export function DashboardSidebar() {
             </div>
           )}
           {!collapsed && (
-            <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={signOut} title="Sign out">
+            <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={handleSignOut} title="Sign out">
               <LogOut className="h-4 w-4" />
             </Button>
           )}
