@@ -15,7 +15,7 @@ const CREATION_OPTIONS = [
     icon: CreditCard,
     title: "Connect via Stripe",
     description: "Link your Stripe account to automatically create a map from your customer data.",
-    action: () => window.open("https://api.mappio.org/connect", "_blank"),
+    href: "/dashboard/sources/stripe",
   },
   {
     id: "manual",
