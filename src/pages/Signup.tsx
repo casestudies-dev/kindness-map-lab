@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -22,7 +22,7 @@ export default function Signup() {
       email,
       password,
       options: {
-        data: { name },
+        data: {},
         emailRedirectTo: window.location.origin,
       },
     });
@@ -47,10 +47,6 @@ export default function Signup() {
         </CardHeader>
         <form onSubmit={handleSignup}>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
-            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
