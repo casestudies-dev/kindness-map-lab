@@ -45,11 +45,10 @@ const Index = () => (
       {/* Map embed */}
       <div className="w-full max-w-4xl mt-4 md:mt-8">
         <iframe
-          src="https://org-maps.onrender.com"
+          src="https://org-maps.onrender.com?bg=transparent"
           width="100%"
           height="600"
-          style={{ border: 'none', borderRadius: '12px', background: 'transparent' }}
-          allow="accelerometer; autoplay"
+          style={{ border: 'none', borderRadius: '12px' }}
           allowTransparency={true}
           loading="lazy"
           title="Glastonbury Festival — Worthy Causes"
