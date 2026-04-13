@@ -1,5 +1,4 @@
 import { Button } from "./ui/button";
-import { Button } from "./ui/button";
 
 const Navbar = () => (
   <nav className="fixed inset-x-0 top-0 z-50 glass border-b border-border/60">
