@@ -17,8 +17,8 @@ const Index = () => (
     <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
     <div className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
 
-    <main className="pt-28 md:pt-32 px-6 pb-12">
-      <div className="flex flex-col items-center text-center min-h-[calc(100vh-4rem)]">
+    <main className="pt-36 md:pt-40 px-6 pb-16">
+      <div className="flex flex-col items-center text-center min-h-[calc(100vh-5rem)]">
       <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 w-fit mb-6">
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
         <span className="text-xs text-muted-foreground font-medium">Show the world your impact</span>
@@ -43,7 +43,7 @@ const Index = () => (
       </div>
 
       {/* Map embed */}
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-4xl mt-4 md:mt-8">
         <iframe
           src="https://org-maps.onrender.com"
           width="100%"
