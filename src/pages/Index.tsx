@@ -41,11 +41,10 @@ const Index = () => (
       {/* Map embed */}
       <div className="w-full max-w-4xl mt-4 md:mt-8">
         <iframe
-          src="https://org-maps.onrender.com?bg=transparent"
+          src="https://glastonbury.mappio.org"
           width="100%"
           height="600"
-          style={{ border: 'none', borderRadius: '12px' }}
-          allowTransparency={true}
+          style={{ border: 'none' }}
           loading="lazy"
           title="Glastonbury Festival — Worthy Causes"
         />
