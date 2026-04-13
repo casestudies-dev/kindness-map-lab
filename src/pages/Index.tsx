@@ -27,7 +27,7 @@ const Index = () => (
       </h1>
 
       <p className="text-base md:text-lg text-foreground leading-relaxed mb-8 max-w-xl">
-        Display stunning maps that showcase your organisation's positive initiatives worldwide.
+        Display stunning maps that showcase your organisation's positive impact on the world.
       </p>
 
       <div className="flex items-center gap-4 mb-10 flex-wrap justify-center">
