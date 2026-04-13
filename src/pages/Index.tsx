@@ -48,8 +48,9 @@ const Index = () => (
           src="https://org-maps.onrender.com"
           width="100%"
           height="600"
-          style={{ border: 'none', borderRadius: '12px' }}
+          style={{ border: 'none', borderRadius: '12px', background: 'transparent' }}
           allow="accelerometer; autoplay"
+          allowTransparency={true}
           loading="lazy"
           title="Glastonbury Festival — Worthy Causes"
         />
