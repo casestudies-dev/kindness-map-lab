@@ -31,7 +31,7 @@ const Index = () => (
       </h1>
 
       <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
-        Build stunning interactive maps that showcase your charity or company's positive initiatives worldwide — embeddable anywhere in seconds.
+        Display stunning maps that showcase your organisation's positive initiatives worldwide.
       </p>
 
       <div className="flex items-center gap-4 mb-10">
