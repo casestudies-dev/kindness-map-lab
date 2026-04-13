@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMaps, useDeleteMap } from "@/hooks/useMaps";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,25 +15,24 @@ const CREATION_OPTIONS = [
     icon: CreditCard,
     title: "Connect via Stripe",
     description: "Link your Stripe account to automatically create a map from your customer data.",
-    action: () => window.open("https://api.mappio.org/connect", "_blank"),
+    href: "/dashboard/sources/stripe",
   },
   {
     id: "manual",
     icon: FileSpreadsheet,
     title: "Build manually / CSV",
     description: "Upload a CSV or manually add locations to build your map from scratch.",
-    action: () => {},
   },
   {
     id: "website",
     icon: Globe,
     title: "Import from website",
     description: "We'll scan your website to automatically detect and map your locations.",
-    action: () => {},
   },
 ];
 
 const MapsPage = () => {
+  const navigate = useNavigate();
   const { data: maps, isLoading } = useMaps();
   const deleteMap = useDeleteMap();
   const { toast } = useToast();
@@ -71,8 +71,8 @@ const MapsPage = () => {
           key={opt.id}
           className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
           onClick={() => {
-            opt.action();
             setShowNewMap(false);
+            if ("href" in opt && opt.href) navigate(opt.href);
           }}
         >
           <CardContent className="p-4 text-center space-y-2">
