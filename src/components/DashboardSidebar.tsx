@@ -30,7 +30,15 @@ export function DashboardSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const navigate = useNavigate();
   const { signOut } = useAuth();
+  const { data: profile } = useProfile();
+  const { data: maps } = useMaps();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/login");
+  };
   const { data: profile } = useProfile();
   const { data: maps } = useMaps();
 
