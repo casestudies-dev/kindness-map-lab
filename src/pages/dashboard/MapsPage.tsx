@@ -75,11 +75,11 @@ const MapsPage = () => {
             setShowNewMap(false);
           }}
         >
-          <CardContent className="p-6 text-center space-y-3">
-            <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <opt.icon className="h-6 w-6 text-primary" />
+          <CardContent className="p-4 text-center space-y-2">
+            <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+              <opt.icon className="h-4 w-4 text-primary" />
             </div>
-            <h3 className="font-semibold text-foreground">{opt.title}</h3>
+            <h3 className="text-sm font-semibold text-foreground">{opt.title}</h3>
             <p className="text-sm text-muted-foreground">{opt.description}</p>
           </CardContent>
         </Card>
