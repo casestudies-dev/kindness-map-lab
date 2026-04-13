@@ -1,8 +1,6 @@
 import { ArrowRight, Code2, Globe2, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
-import FeatureCard from "@/components/FeatureCard";
-import globeHero from "@/assets/globe-hero.jpg";
 
 const features = [
   { icon: MapPin, title: "Interactive Pins", description: "Drop pins for every project, story, or initiative across the globe." },
