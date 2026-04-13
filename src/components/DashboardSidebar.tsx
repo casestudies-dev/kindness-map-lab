@@ -39,8 +39,6 @@ export function DashboardSidebar() {
     await signOut();
     navigate("/login");
   };
-  const { data: profile } = useProfile();
-  const { data: maps } = useMaps();
 
   const initials = profile?.name
     ? profile.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
