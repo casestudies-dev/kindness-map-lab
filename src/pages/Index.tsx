@@ -1,5 +1,6 @@
 import { ArrowRight, Code2, Globe2, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 
 const features = [
@@ -31,11 +32,11 @@ const Index = () => (
       </p>
 
       <div className="flex items-center gap-4 mb-10 flex-wrap justify-center">
-        <Button variant="hero" size="lg" className="gap-2">
-          Start for free <ArrowRight className="w-4 h-4" />
+        <Button variant="hero" size="lg" className="gap-2" asChild>
+          <Link to="/signup">Start for free <ArrowRight className="w-4 h-4" /></Link>
         </Button>
-        <Button variant="heroOutline" size="lg">
-          See examples
+        <Button variant="heroOutline" size="lg" asChild>
+          <Link to="/login">Sign in</Link>
         </Button>
       </div>
 
