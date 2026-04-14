@@ -92,19 +92,13 @@ const MapsPage = () => {
         </div>
       ) : !maps?.length ? (
         <div className="space-y-8">
-          <div>
-            <div className="text-center mb-4">
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Example</p>
-              <p className="text-lg font-medium text-foreground mt-1">A preview of what your map could look like</p>
-            </div>
-            <div className="max-w-2xl mx-auto aspect-video rounded-lg overflow-hidden border border-border bg-muted">
-              <iframe
-                src="https://sample.mappio.org"
-                className="w-full h-full"
-                loading="lazy"
-                title="Sample Map"
-              />
-            </div>
+          <div className="max-w-2xl mx-auto aspect-video rounded-lg overflow-hidden border border-border bg-muted">
+            <iframe
+              src="https://sample.mappio.org"
+              className="w-full h-full"
+              loading="lazy"
+              title="Sample Map"
+            />
           </div>
           <div className="text-center">
             <p className="text-lg font-medium text-foreground">Create your first map</p>
