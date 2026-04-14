@@ -122,19 +122,34 @@ const ConnectStripePage = () => {
         return;
       }
 
-      // Link to current user via client_owners
-      const { data: clients } = await supabase
-        .from("clients")
-        .select("id")
-        .eq("slug", data.slug)
-        .single();
+      // Upsert client record and link to current user
+      if (user?.id) {
+        const { data: upserted } = await supabase
+          .from("clients")
+          .upsert(
+            {
+              slug: data.slug,
+              company_name: companyName.trim(),
+              hq_location: hqLocation.trim(),
+              hq_lat: hqLat,
+              hq_lng: hqLng,
+              config: {},
+            },
+            { onConflict: "slug" }
+          )
+          .select("id")
+          .single();
 
-      if (clients?.id && user?.id) {
-        await supabase.from("client_owners").insert({
-          client_id: clients.id,
-          user_id: user.id,
-          role: "owner",
-        });
+        if (upserted?.id) {
+          await supabase.from("client_owners").upsert(
+            {
+              client_id: upserted.id,
+              user_id: user.id,
+              role: "owner",
+            },
+            { onConflict: "client_id,user_id" }
+          );
+        }
       }
 
       setResult(data as ConnectResponse);
