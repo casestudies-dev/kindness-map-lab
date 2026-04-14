@@ -5,31 +5,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Code, RefreshCw, Trash2, MapPin, Eye, Plus, CreditCard, FileSpreadsheet, Globe } from "lucide-react";
+import { ExternalLink, Code, RefreshCw, Trash2, MapPin, Eye, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
-
-const CREATION_OPTIONS = [
-  {
-    id: "stripe",
-    icon: CreditCard,
-    title: "Connect via Stripe",
-    description: "Link your Stripe account to automatically create a map from your customer data.",
-    href: "/dashboard/sources/stripe",
-  },
-  {
-    id: "manual",
-    icon: FileSpreadsheet,
-    title: "Build manually / CSV",
-    description: "Upload a CSV or manually add locations to build your map from scratch.",
-  },
-  {
-    id: "website",
-    icon: Globe,
-    title: "Import from website",
-    description: "We'll scan your website to automatically detect and map your locations.",
-  },
-];
 
 const MapsPage = () => {
   const navigate = useNavigate();
@@ -38,7 +16,6 @@ const MapsPage = () => {
   const { toast } = useToast();
   const [embedSlug, setEmbedSlug] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [showNewMap, setShowNewMap] = useState(false);
 
   const getLocationsCount = (config: Record<string, unknown>) => {
     const locations = config?.locations;
@@ -64,14 +41,6 @@ const MapsPage = () => {
     setDeleteId(null);
   };
 
-  const handleOptionClick = (opt: typeof CREATION_OPTIONS[number]) => {
-    setShowNewMap(false);
-    if ("href" in opt && opt.href) {
-      navigate(opt.href);
-    }
-  };
-
-
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -79,7 +48,7 @@ const MapsPage = () => {
           <h1 className="text-2xl font-semibold text-foreground font-heading">Maps</h1>
           <p className="text-muted-foreground mt-1">Manage your globes and maps.</p>
         </div>
-        <Button onClick={() => setShowNewMap(true)}>
+        <Button onClick={() => navigate("/dashboard/maps/new")}>
           <Plus className="h-4 w-4 mr-1" /> New map
         </Button>
       </div>
@@ -93,7 +62,7 @@ const MapsPage = () => {
       ) : !maps?.length ? (
         <div className="space-y-6 text-center">
           <h2 className="text-2xl font-semibold text-foreground font-heading">Create your first map</h2>
-          <Button size="lg" onClick={() => setShowNewMap(true)}>
+          <Button size="lg" onClick={() => navigate("/dashboard/maps/new")}>
             <Plus className="h-4 w-4 mr-1" /> Create
           </Button>
           <div className="max-w-2xl mx-auto aspect-video overflow-hidden">
@@ -157,33 +126,6 @@ const MapsPage = () => {
           ))}
         </div>
       )}
-
-      {/* New map modal */}
-      <Dialog open={showNewMap} onOpenChange={setShowNewMap}>
-        <DialogContent className="sm:max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Create a new map</DialogTitle>
-            <DialogDescription>Choose how you'd like to get started.</DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 md:grid-cols-3">
-            {CREATION_OPTIONS.map((opt) => (
-              <Card
-                key={opt.id}
-                className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
-                onClick={() => handleOptionClick(opt)}
-              >
-                <CardContent className="p-4 text-center space-y-2">
-                  <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
-                    <opt.icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground">{opt.title}</h3>
-                  <p className="text-sm text-muted-foreground">{opt.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
 
       {/* Embed modal */}
       <Dialog open={!!embedSlug} onOpenChange={() => setEmbedSlug(null)}>

@@ -11,6 +11,7 @@ import Login from "./pages/Login.tsx";
 import Signup from "./pages/Signup.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import MapsPage from "./pages/dashboard/MapsPage.tsx";
+import NewMapPage from "./pages/dashboard/NewMapPage.tsx";
 import SourcesPage from "./pages/dashboard/SourcesPage.tsx";
 import ConnectStripePage from "./pages/dashboard/ConnectStripePage.tsx";
 import AnalyticsPage from "./pages/dashboard/AnalyticsPage.tsx";
@@ -38,6 +39,7 @@ const App = () => (
               }
             >
               <Route index element={<MapsPage />} />
+              <Route path="maps/new" element={<NewMapPage />} />
               <Route path="sources" element={<SourcesPage />} />
               <Route path="sources/stripe" element={<ConnectStripePage />} />
               <Route path="analytics" element={<AnalyticsPage />} />
