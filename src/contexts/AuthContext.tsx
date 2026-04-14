@@ -51,6 +51,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (_event === "SIGNED_IN") {
           void ensureProfile(session);
+
+          // If we landed on the homepage with auth tokens in the hash
+          // (email verification link), redirect to the dashboard
+          if (window.location.hash.includes("access_token") && window.location.pathname === "/") {
+            window.history.replaceState(null, "", "/dashboard");
+            window.location.reload();
+          }
         }
       }
     );
