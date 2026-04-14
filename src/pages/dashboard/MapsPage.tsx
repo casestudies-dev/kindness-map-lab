@@ -95,15 +95,14 @@ const MapsPage = () => {
           <div>
             <div className="text-center mb-4">
               <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Example</p>
-              <p className="text-lg font-medium text-foreground mt-1">Glastonbury Festival — Worthy Causes</p>
-              <p className="text-sm text-muted-foreground mt-1">See the kind of map you can create with Mappio.</p>
+              <p className="text-lg font-medium text-foreground mt-1">A preview of what your map could look like</p>
             </div>
             <div className="w-full aspect-video rounded-lg overflow-hidden border border-border bg-muted">
               <iframe
-                src="https://glastonbury.mappio.org"
+                src="https://sample.mappio.org"
                 className="w-full h-full"
                 loading="lazy"
-                title="Example — Glastonbury Festival"
+                title="Sample Map"
               />
             </div>
           </div>

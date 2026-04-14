@@ -43,12 +43,12 @@ const Index = () => (
       {/* Map embed */}
       <div className="w-full max-w-4xl mt-4 md:mt-8">
         <iframe
-          src="https://glastonbury.mappio.org"
+          src="https://sample.mappio.org"
           width="100%"
           height="600"
           style={{ border: 'none', borderRadius: '16px', overflow: 'hidden' }}
           loading="lazy"
-          title="Glastonbury Festival — Worthy Causes"
+          title="Sample — Mappio globe"
         />
       </div>
       </div>
