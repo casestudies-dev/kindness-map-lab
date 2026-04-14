@@ -114,6 +114,7 @@ const ConnectStripePage = () => {
           hqLocation: hqLocation.trim(),
           hqLat,
           hqLng,
+          userId: user?.id,
         }),
       });
       const data = await res.json();
@@ -122,35 +123,7 @@ const ConnectStripePage = () => {
         return;
       }
 
-      // Upsert client record and link to current user
-      if (user?.id) {
-        const { data: upserted } = await supabase
-          .from("clients")
-          .upsert(
-            {
-              slug: data.slug,
-              company_name: companyName.trim(),
-              hq_location: hqLocation.trim(),
-              hq_lat: hqLat,
-              hq_lng: hqLng,
-              config: {},
-            },
-            { onConflict: "slug" }
-          )
-          .select("id")
-          .single();
-
-        if (upserted?.id) {
-          await supabase.from("client_owners").upsert(
-            {
-              client_id: upserted.id,
-              user_id: user.id,
-              role: "owner",
-            },
-            { onConflict: "client_id,user_id" }
-          );
-        }
-      }
+      // Owner linking is handled server-side via userId in the request
 
       setResult(data as ConnectResponse);
     } catch {

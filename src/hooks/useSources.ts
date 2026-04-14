@@ -2,19 +2,20 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
-export interface ClientKey {
+export interface DataSource {
   id: string;
-  client_id: string;
-  encrypted_key: string;
+  map_id: string;
+  provider: string;
+  encrypted_credentials: string | null;
   created_at: string;
-  last_used: string | null;
+  last_synced: string | null;
 }
 
 export interface SourceWithMap {
-  clientId: string;
-  companyName: string;
-  slug: string;
-  key: ClientKey | null;
+  clientId: string;          // map id (keeping the name for UI compatibility)
+  companyName: string;       // organisation name
+  slug: string;              // organisation slug
+  key: DataSource | null;
 }
 
 export function useSources() {
@@ -23,32 +24,48 @@ export function useSources() {
   return useQuery({
     queryKey: ["sources", user?.id],
     queryFn: async () => {
-      const { data: ownerships, error: ownerError } = await supabase
-        .from("client_owners")
-        .select("client_id")
-        .eq("user_id", user!.id);
-      if (ownerError) throw ownerError;
-      if (!ownerships?.length) return [];
+      // Get user's organisations
+      const { data: orgs, error: orgErr } = await supabase
+        .from("organisations")
+        .select("id, slug, name")
+        .eq("owner_id", user!.id);
+      if (orgErr) throw orgErr;
+      if (!orgs?.length) return [];
 
-      const clientIds = ownerships.map((o) => o.client_id);
+      const orgIds = orgs.map((o) => o.id);
+      const orgById = new Map(orgs.map((o) => [o.id, o]));
 
-      const [clientsRes, keysRes] = await Promise.all([
-        supabase.from("clients").select("id, company_name, slug").in("id", clientIds),
-        supabase.from("client_keys").select("*").in("client_id", clientIds),
-      ]);
+      // Get all maps for those orgs
+      const { data: maps, error: mapErr } = await supabase
+        .from("maps")
+        .select("id, organisation_id")
+        .in("organisation_id", orgIds);
+      if (mapErr) throw mapErr;
+      if (!maps?.length) return [];
 
-      if (clientsRes.error) throw clientsRes.error;
-      if (keysRes.error) throw keysRes.error;
+      const mapIds = maps.map((m) => m.id);
+      const orgByMap = new Map(maps.map((m) => [m.id, m.organisation_id]));
 
-      const keysMap = new Map<string, ClientKey>();
-      keysRes.data?.forEach((k) => keysMap.set(k.client_id, k as ClientKey));
+      // Get all data sources for those maps
+      const { data: sources, error: srcErr } = await supabase
+        .from("data_sources")
+        .select("*")
+        .in("map_id", mapIds);
+      if (srcErr) throw srcErr;
 
-      return (clientsRes.data || []).map((c) => ({
-        clientId: c.id,
-        companyName: c.company_name,
-        slug: c.slug,
-        key: keysMap.get(c.id) || null,
-      })) as SourceWithMap[];
+      const sourceByMap = new Map<string, DataSource>();
+      sources?.forEach((s) => sourceByMap.set(s.map_id, s as DataSource));
+
+      // Build one SourceWithMap per map
+      return maps.map((m) => {
+        const org = orgById.get(m.organisation_id);
+        return {
+          clientId: m.id,
+          companyName: org?.name || "",
+          slug: org?.slug || "",
+          key: sourceByMap.get(m.id) || null,
+        };
+      }) as SourceWithMap[];
     },
     enabled: !!user,
   });
@@ -58,8 +75,8 @@ export function useDisconnectSource() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (keyId: string) => {
-      const { error } = await supabase.from("client_keys").delete().eq("id", keyId);
+    mutationFn: async (sourceId: string) => {
+      const { error } = await supabase.from("data_sources").delete().eq("id", sourceId);
       if (error) throw error;
     },
     onSuccess: () => {
