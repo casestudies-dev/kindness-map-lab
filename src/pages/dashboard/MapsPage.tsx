@@ -92,34 +92,13 @@ const MapsPage = () => {
         </div>
       ) : !maps?.length ? (
         <div className="space-y-8">
-          <div className="max-w-2xl mx-auto aspect-video rounded-lg overflow-hidden border border-border bg-muted">
+          <div className="max-w-2xl mx-auto aspect-video overflow-hidden">
             <iframe
               src="https://sample.mappio.org"
               className="w-full h-full"
               loading="lazy"
               title="Sample Map"
             />
-          </div>
-          <div className="text-center">
-            <p className="text-lg font-medium text-foreground">Create your first map</p>
-            <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to get started.</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {CREATION_OPTIONS.map((opt) => (
-              <Card
-                key={opt.id}
-                className="cursor-pointer transition-colors hover:border-primary/40 hover:bg-accent/50"
-                onClick={() => handleOptionClick(opt)}
-              >
-                <CardContent className="p-4 text-center space-y-2">
-                  <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
-                    <opt.icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground">{opt.title}</h3>
-                  <p className="text-sm text-muted-foreground">{opt.description}</p>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       ) : (
