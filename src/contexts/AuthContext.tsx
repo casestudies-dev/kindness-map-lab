@@ -24,28 +24,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const ensureProfile = async (session: Session | null) => {
+      if (!session?.user) return;
+
+      const { data: existing } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("id", session.user.id)
+        .single();
+
+      if (!existing) {
+        await supabase.from("profiles").insert({
+          id: session.user.id,
+          email: session.user.email,
+          name: session.user.user_metadata?.name || "",
+          company_name: "",
+        });
+      }
+    };
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      (_event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
 
-        // Create profile on first sign-in
-        if (session?.user && _event === "SIGNED_IN") {
-          const { data: existing } = await supabase
-            .from("profiles")
-            .select("id")
-            .eq("id", session.user.id)
-            .single();
-
-          if (!existing) {
-            await supabase.from("profiles").insert({
-              id: session.user.id,
-              email: session.user.email,
-              name: session.user.user_metadata?.name || "",
-              company_name: "",
-            });
-          }
+        if (_event === "SIGNED_IN") {
+          void ensureProfile(session);
         }
       }
     );
