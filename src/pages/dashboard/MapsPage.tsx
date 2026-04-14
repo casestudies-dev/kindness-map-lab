@@ -93,6 +93,9 @@ const MapsPage = () => {
       ) : !maps?.length ? (
         <div className="space-y-6 text-center">
           <h2 className="text-2xl font-semibold text-foreground font-heading">Create your first map</h2>
+          <Button size="lg" onClick={() => setShowNewMap(true)}>
+            <Plus className="h-4 w-4 mr-1" /> Create
+          </Button>
           <div className="max-w-2xl mx-auto aspect-video overflow-hidden">
             <iframe
               src="https://sample.mappio.org"
@@ -101,9 +104,6 @@ const MapsPage = () => {
               title="Sample Map"
             />
           </div>
-          <Button size="lg" onClick={() => setShowNewMap(true)}>
-            <Plus className="h-4 w-4 mr-1" /> Create
-          </Button>
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
