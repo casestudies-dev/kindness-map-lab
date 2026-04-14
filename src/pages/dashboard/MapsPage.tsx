@@ -97,7 +97,7 @@ const MapsPage = () => {
               <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Example</p>
               <p className="text-lg font-medium text-foreground mt-1">A preview of what your map could look like</p>
             </div>
-            <div className="w-full aspect-video rounded-lg overflow-hidden border border-border bg-muted">
+            <div className="max-w-2xl mx-auto aspect-video rounded-lg overflow-hidden border border-border bg-muted">
               <iframe
                 src="https://sample.mappio.org"
                 className="w-full h-full"
