@@ -91,11 +91,25 @@ const MapsPage = () => {
           ))}
         </div>
       ) : !maps?.length ? (
-        <div className="space-y-4">
-          <div className="text-center mb-8">
-            <MapPin className="h-12 w-12 mx-auto mb-4 opacity-40 text-muted-foreground" />
-            <p className="text-lg font-medium text-foreground">No maps yet</p>
-            <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to create your first map.</p>
+        <div className="space-y-8">
+          <div>
+            <div className="text-center mb-4">
+              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Example</p>
+              <p className="text-lg font-medium text-foreground mt-1">Glastonbury Festival — Worthy Causes</p>
+              <p className="text-sm text-muted-foreground mt-1">See the kind of map you can create with Mappio.</p>
+            </div>
+            <div className="w-full aspect-video rounded-lg overflow-hidden border border-border bg-muted">
+              <iframe
+                src="https://glastonbury.mappio.org"
+                className="w-full h-full"
+                loading="lazy"
+                title="Example — Glastonbury Festival"
+              />
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="text-lg font-medium text-foreground">Create your first map</p>
+            <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to get started.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {CREATION_OPTIONS.map((opt) => (

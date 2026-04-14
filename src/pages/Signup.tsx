@@ -31,7 +31,7 @@ export default function Signup() {
       password,
       options: {
         data: {},
-        emailRedirectTo: window.location.origin,
+        emailRedirectTo: `${window.location.origin}/dashboard`,
       },
     });
     setLoading(false);
