@@ -37,7 +37,7 @@ export function DashboardSidebar() {
 
   const handleSignOut = async () => {
     await signOut();
-    navigate("/login");
+    navigate("/login", { replace: true });
   };
 
   const initials = profile?.name
